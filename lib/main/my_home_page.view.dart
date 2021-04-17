@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_github_search/main/my_home_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MyHomePageStateWidgetBuilder {
 
@@ -74,27 +75,43 @@ class MyHomePageStateWidgetBuilder {
     ),
   );
 
-  Widget _item(int index) => Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          ClipOval(
-            child: Image.network(
-              state.users[index].avatar,
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
-            ),
+  Widget _item(int index) => GestureDetector(
+    onTap: () {
+      Fluttertoast.showToast(
+          msg: "Name is ${state.users[index].name}！",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER
+      );
+    },
+    child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+          decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(8.0))
           ),
-          SizedBox(width: 16.0),
-          Center(
-            child: Text(
-              state.users[index].name,
-              style: TextStyle(fontSize: 18.0),
-            ),
-          )
-        ],
-      )
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              ClipOval(
+                child: Image.network(
+                  state.users[index].avatar,
+                  height: 60,
+                  width: 60,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: 16.0),
+              Center(
+                child: Text(
+                  state.users[index].name,
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+              )
+            ],
+          ),
+        )
+    ),
   );
 }

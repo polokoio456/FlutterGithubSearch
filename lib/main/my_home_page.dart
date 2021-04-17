@@ -35,7 +35,7 @@ class MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     keywordSubject
-        .debounceTime(Duration(milliseconds: 1500))
+        .debounceTime(Duration(milliseconds: 500))
         .listen((text) {
           _resetList();
           onSearch(text, page);
