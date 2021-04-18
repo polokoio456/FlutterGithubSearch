@@ -28,6 +28,7 @@ class MyHomePageStateWidgetBuilder {
   Widget get _keywordTextField => Container(
     margin: EdgeInsets.symmetric(horizontal: 12.0),
     decoration: BoxDecoration(
+      color: Colors.black,
       border: Border.all(width: 3.0),
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
     ),
@@ -40,14 +41,14 @@ class MyHomePageStateWidgetBuilder {
       controller: state.keywordController,
       textAlign: TextAlign.start,
       textAlignVertical: TextAlignVertical.center,
-      style: TextStyle(color: Color(0xFF333333), fontSize: 20),
-      cursorColor: Colors.black,
+      style: TextStyle(color: Colors.white, fontSize: 20),
+      cursorColor: Colors.white,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(8),
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 2)),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 2)),
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent, width: 2)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent, width: 2)),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Colors.transparent,
         focusColor: Colors.white,
       ),
     ),
@@ -77,7 +78,10 @@ class MyHomePageStateWidgetBuilder {
     child: SizedBox(
         width: 24.0,
         height: 24.0,
-        child: CircularProgressIndicator(strokeWidth: 2.0)
+        child: CircularProgressIndicator(
+            strokeWidth: 2.0,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+        )
     ),
   );
 
