@@ -18,6 +18,7 @@ class MyHomePageStateWidgetBuilder {
             children:[
               SizedBox(height: 70.0),
               _keywordTextField,
+              SizedBox(height: 8.0),
               _githubListView(context)
             ],
           )
@@ -25,8 +26,13 @@ class MyHomePageStateWidgetBuilder {
   );
 
   Widget get _keywordTextField => Container(
-    height: 50.0,
-    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    margin: EdgeInsets.symmetric(horizontal: 12.0),
+    decoration: BoxDecoration(
+      border: Border.all(width: 3.0),
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
+    height: 40.0,
+    padding: EdgeInsets.symmetric(horizontal: 8.0),
     child: TextField(
       onChanged: (text) {
         state.onKeywordChanged(text);
@@ -35,11 +41,11 @@ class MyHomePageStateWidgetBuilder {
       textAlign: TextAlign.start,
       textAlignVertical: TextAlignVertical.center,
       style: TextStyle(color: Color(0xFF333333), fontSize: 20),
-      cursorColor: COLOR_BLACK,
+      cursorColor: Colors.black,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(8),
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: COLOR_GENERAL_TEXT, width: 2)),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: COLOR_GENERAL_TEXT, width: 2)),
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 2)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 2)),
         filled: true,
         fillColor: Colors.white,
         focusColor: Colors.white,
