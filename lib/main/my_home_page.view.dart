@@ -68,6 +68,7 @@ class MyHomePageStateWidgetBuilder {
       context: context,
       removeTop: true,
       child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: state.users.length,
           itemBuilder: (context, index) {
             if (index == (state.users.length - 1)) {
