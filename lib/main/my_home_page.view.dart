@@ -57,6 +57,7 @@ class MyHomePageStateWidgetBuilder {
               ),
             ),
         ),
+        SizedBox(width: 8),
         Icon(Icons.search, color: Colors.white,)
       ],
     )
