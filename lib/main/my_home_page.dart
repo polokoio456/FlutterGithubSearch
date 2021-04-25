@@ -25,7 +25,8 @@ class MyHomePageState extends State<MyHomePage> {
 
   List<GithubUser> users = List<GithubUser>();
 
-  int page = 1;
+  int _page = 1;
+  int lastPageSize;
 
   @override
   Widget build(BuildContext context) => MyHomePageStateWidgetBuilder(this).sceneWidget(context);
@@ -38,7 +39,7 @@ class MyHomePageState extends State<MyHomePage> {
         .debounceTime(Duration(milliseconds: 500))
         .listen((text) {
           _resetList();
-          onSearch(text, page);
+          onSearch(text, _page);
         });
   }
 
@@ -50,12 +51,17 @@ class MyHomePageState extends State<MyHomePage> {
     _githubService.search(keyword, page)
         .asStream()
         .listen((response) {
+        lastPageSize = response.userList.length;
           _updateList(response.userList);
         });
   }
 
   void loadMore() {
-    onSearch(keywordController.text, ++page);
+    if (lastPageSize < 20) {
+      return;
+    }
+
+    onSearch(keywordController.text, ++_page);
   }
 
   void _updateList(List<GithubUser> newUsers) {
@@ -66,7 +72,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   void _resetList() {
     setState(() {
-      page = 1;
+      _page = 1;
       users.clear();
     });
   }

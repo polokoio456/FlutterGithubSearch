@@ -27,31 +27,39 @@ class MyHomePageStateWidgetBuilder {
 
   Widget get _keywordTextField => Container(
     margin: EdgeInsets.symmetric(horizontal: 12.0),
+    padding: EdgeInsets.symmetric(horizontal: 12.0),
     decoration: BoxDecoration(
       color: Colors.black,
       border: Border.all(width: 3.0),
-      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      borderRadius: BorderRadius.all(Radius.circular(30.0)),
     ),
-    height: 40.0,
-    padding: EdgeInsets.symmetric(horizontal: 8.0),
-    child: TextField(
-      onChanged: (text) {
-        state.onKeywordChanged(text);
-      },
-      controller: state.keywordController,
-      textAlign: TextAlign.start,
-      textAlignVertical: TextAlignVertical.center,
-      style: TextStyle(color: Colors.white, fontSize: 20),
-      cursorColor: Colors.white,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(8),
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent, width: 2)),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent, width: 2)),
-        filled: true,
-        fillColor: Colors.transparent,
-        focusColor: Colors.white,
-      ),
-    ),
+    height: 50.0,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+            child: TextField(
+              maxLines: 1,
+              onChanged: (text) {
+                state.onKeywordChanged(text);
+              },
+              controller: state.keywordController,
+              textAlign: TextAlign.start,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+              cursorColor: Colors.white,
+              decoration: InputDecoration(
+                hintText: "Search",
+                hintStyle: TextStyle(fontSize: 20.0, color: Colors.white.withOpacity(0.5)),
+                border: InputBorder.none,
+                fillColor: Colors.transparent,
+                focusColor: Colors.white,
+              ),
+            ),
+        ),
+        Icon(Icons.search, color: Colors.white,)
+      ],
+    )
   );
 
   Widget _githubListView(BuildContext context) => Expanded(
@@ -63,7 +71,12 @@ class MyHomePageStateWidgetBuilder {
           itemBuilder: (context, index) {
             if (index == (state.users.length - 1)) {
               state.loadMore();
-              return _loadMoreCircle;
+
+              if (state.lastPageSize < 20) {
+                return Container();
+              } else {
+                return _loadMoreCircle;
+              }
             } else {
               return _item(index);
             }
@@ -102,7 +115,6 @@ class MyHomePageStateWidgetBuilder {
               borderRadius: BorderRadius.all(Radius.circular(8.0))
           ),
           child: Row(
-            mainAxisSize: MainAxisSize.max,
             children: [
               ClipOval(
                 child: Image.network(
@@ -113,12 +125,14 @@ class MyHomePageStateWidgetBuilder {
                 ),
               ),
               SizedBox(width: 16.0),
-              Center(
+              Expanded(
                 child: Text(
                   state.users[index].name,
                   style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              )
+              ),
             ],
           ),
         )
