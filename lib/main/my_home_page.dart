@@ -48,6 +48,10 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   void onSearch(String keyword, int page) {
+    if (keyword == null || keyword.isEmpty) {
+      return;
+    }
+
     _githubService.search(keyword, page)
         .asStream()
         .listen((response) {
