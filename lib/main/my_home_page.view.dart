@@ -28,8 +28,8 @@ class MyHomePageStateWidgetBuilder {
   );
 
   Widget get _keywordTextField => Container(
-    margin: EdgeInsets.symmetric(horizontal: 12.0),
-    padding: EdgeInsets.symmetric(horizontal: 12.0),
+    margin: const EdgeInsets.symmetric(horizontal: 12.0),
+    padding: const EdgeInsets.symmetric(horizontal: 12.0),
     decoration: BoxDecoration(
       color: Colors.black,
       border: Border.all(width: 3.0),
