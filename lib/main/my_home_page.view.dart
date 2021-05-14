@@ -13,15 +13,17 @@ class MyHomePageStateWidgetBuilder {
   MyHomePageStateWidgetBuilder(this.state);
 
   Widget sceneWidget(BuildContext context) => Scaffold(
-      body: Container(
-          child: Column(
-            children:[
-              SizedBox(height: 70.0),
-              _keywordTextField,
-              SizedBox(height: 8.0),
-              _githubListView(context)
-            ],
-          )
+      body: SafeArea(
+        child: Container(
+            child: Column(
+              children:[
+                SizedBox(height: 8.0),
+                _keywordTextField,
+                SizedBox(height: 8.0),
+                _githubListView(context)
+              ],
+            )
+        ),
       )
   );
 
