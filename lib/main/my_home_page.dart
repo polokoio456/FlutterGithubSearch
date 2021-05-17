@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 
 class MyHomePage extends StatefulWidget {
 
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   MyHomePageState createState() => MyHomePageState(RestApiModule().githubService);
@@ -23,10 +23,10 @@ class MyHomePageState extends State<MyHomePage> {
 
   MyHomePageState(this._githubService);
 
-  List<GithubUser> users = List<GithubUser>();
+  List<GithubUser> users = <GithubUser>[];
 
   int _page = 1;
-  int lastPageSize;
+  int lastPageSize = 0;
 
   @override
   Widget build(BuildContext context) => MyHomePageStateWidgetBuilder(this).sceneWidget(context);
@@ -48,7 +48,7 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   void onSearch(String keyword, int page) {
-    if (keyword == null || keyword.isEmpty) {
+    if (keyword.isEmpty) {
       return;
     }
 
